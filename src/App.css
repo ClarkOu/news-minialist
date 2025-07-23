@@ -1,0 +1,148 @@
+/* frontend/src/App.css */
+/* 全局样式 */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --text-color: #333;
+    --light-text: #666;
+    --lighter-text: #999;
+    --bg-color: #f9f9f9;
+    --card-bg: #fff;
+    --border-color: #eee;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    font-size: 1.2rem;
+    color: var(--light-text);
+  }
+  
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  main.container {
+    flex: 1;
+    padding: 2rem 1rem;
+  }
+  
+  .footer {
+    margin-top: 3rem;
+    padding: 1.5rem 0;
+    background-color: var(--secondary-color);
+    color: white;
+    text-align: center;
+  }
+
+/* 添加到App.css */
+.app-layout {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.content-area {
+  flex: 1;
+}
+
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+}
+
+.category-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.category-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--light-text);
+}
+
+.category-btn.active {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.skeleton-card {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.skeleton-title {
+  height: 1.5rem;
+  background-color: var(--bg-color);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  width: 100%;
+}
+
+.skeleton-meta {
+  height: 1rem;
+  background-color: var(--bg-color);
+  border-radius: 4px;
+  width: 40%;
+}
+
+@media (max-width: 992px) {
+  .app-layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+}
