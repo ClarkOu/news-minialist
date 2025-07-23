@@ -133,12 +133,21 @@ function getAuthToken() {
 function getAuthHeaders() {
   const token = getAuthToken();
   const headers = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'ngrok-skip-browser-warning': 'true'
   };
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
   return headers;
+}
+
+// 創建基礎請求頭（包含 ngrok 跳過警告）
+function getBaseHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    'ngrok-skip-browser-warning': 'true'
+  };
 }
 
 // 用戶認證相關API
@@ -149,7 +158,7 @@ export const loginUser = async (username, password) => {
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getBaseHeaders(),
       body: JSON.stringify({ username, password })
     });
     
@@ -179,7 +188,7 @@ export const registerUser = async (username, email, password) => {
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getBaseHeaders(),
       body: JSON.stringify({ username, email, password })
     });
     
@@ -232,7 +241,9 @@ export const fetchNews = async (params = {}) => {
   logApiCall('GET', url, params);
   
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: getBaseHeaders()
+    });
     console.log('📡 API响应状态:', response.status);
     
     if (!response.ok) {
@@ -256,7 +267,9 @@ export const fetchNewsDetail = async (id) => {
   logApiCall('GET', url);
   
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: getBaseHeaders()
+    });
     console.log('📡 API响应状态:', response.status);
     
     if (!response.ok) {
@@ -280,7 +293,9 @@ export const fetchCategories = async () => {
   logApiCall('GET', url);
   
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: getBaseHeaders()
+    });
     console.log('📡 API响应状态:', response.status);
     
     if (!response.ok) {
@@ -304,9 +319,7 @@ export const addBrowseHistory = async (userId, newsId) => {
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: getBaseHeaders(),
       body: JSON.stringify({ user_id: userId, news_id: newsId }),
     });
     if (!response.ok) {
