@@ -1,0 +1,76 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.category-nav {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+}
+
+.category-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.category-btn.active {
+  background-color: var(--background-alt);
+  color: var(--text-primary);
+}
+
+/* 骨架屏样式 */
+.loading-skeleton {
+  padding-top: 1rem;
+}
+
+.skeleton-card {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.skeleton-title {
+  height: 1.5rem;
+  background-color: var(--background-alt);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  width: 100%;
+}
+
+.skeleton-meta {
+  height: 1rem;
+  background-color: var(--background-alt);
+  border-radius: 4px;
+  width: 40%;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .news-title {
+    font-size: 1.125rem;
+  }
+}
