@@ -1,11 +1,10 @@
 // src/components/FilterPanel.jsx
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import './FilterPanel.css';
 
 const FilterPanel = ({ filters, onFilterChange }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
   
   const [localFilters, setLocalFilters] = useState({
     minScore: filters.minScore || 0,
@@ -23,7 +22,7 @@ const FilterPanel = ({ filters, onFilterChange }) => {
       if (daysParam) updatedFilters.days = parseInt(daysParam, 10);
       setLocalFilters(updatedFilters);
     }
-  }, []);
+  }, [localFilters, searchParams]);
 
   // 更新分数
   const handleScoreChange = (value) => {

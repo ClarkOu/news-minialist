@@ -25,7 +25,7 @@ const AdminPanel = () => {
     // 每30秒更新一次狀態
     const interval = setInterval(fetchSchedulerStatus, 30000);
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchSchedulerStatus]);
 
   const triggerCrawl = async () => {
     setLoading(true);

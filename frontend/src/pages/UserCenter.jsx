@@ -27,7 +27,7 @@ const UserCenter = () => {
 
   // 用户信息和历史
   const [userInfo, setUserInfo] = useState(null);
-  const [loading, setLoading] = useState(true);
+
   const [history, setHistory] = useState([]);
   const [historyLoading, setHistoryLoading] = useState(false);
   const [filterKeyword, setFilterKeyword] = useState('');
@@ -148,7 +148,7 @@ const UserCenter = () => {
       } catch (err) {
         message.error('获取用户信息失败');
       } finally {
-        setLoading(false);
+    
       }
     };
     fetchUser();

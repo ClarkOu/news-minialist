@@ -9,15 +9,12 @@ const { Title, Text } = Typography;
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
     setLoading(true);
-    setSuccess('');
     try {
       await registerUser(values.username, values.email, values.password);
-      setSuccess('注册成功，请登录！');
       message.success('注册成功，请登录！');
       setTimeout(() => navigate('/login'), 1200);
     } catch (err) {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { getUser, logout, isLoggedIn } from '../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import './Layout.css';
-import { setupDarkMode } from '../utils/darkMode';
+
 
 const Layout = ({ children }) => {
   const [isDark, setIsDark] = useState(false);
