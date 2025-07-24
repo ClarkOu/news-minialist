@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 const AdminPanel = () => {
@@ -9,7 +9,7 @@ const AdminPanel = () => {
   const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
   // 獲取調度器狀態
-  const fetchSchedulerStatus = async () => {
+  const fetchSchedulerStatus = useCallback(async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/crawler/status`);
       const data = await response.json();
@@ -17,7 +17,7 @@ const AdminPanel = () => {
     } catch (error) {
       console.error('獲取調度器狀態失敗:', error);
     }
-  };
+  }, [API_BASE_URL]);
 
   // 組件加載時獲取狀態
   useEffect(() => {
