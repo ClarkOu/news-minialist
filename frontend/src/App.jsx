@@ -1,6 +1,6 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Layout from './components/Layout';
 import NewsCard from './components/NewsCard';
@@ -13,7 +13,7 @@ import Register from './pages/Register';
 import UserCenter from './pages/UserCenter';
 import { fetchNews, fetchCategories } from './services/api';
 
-const basename = process.env.NODE_ENV === 'production' ? '/news-minialist' : '';
+
 
 function App() {
   const [news, setNews] = useState([]);
@@ -201,7 +201,7 @@ function App() {
   );
   
   return (
-    <Router basename={basename}>
+    <Router>
       <Routes>
         <Route path="/" element={<MainContent />} />
         <Route path="/login" element={<Login />} />
