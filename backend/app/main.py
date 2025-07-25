@@ -4,11 +4,11 @@ from datetime import datetime
 import uvicorn
 import logging
 
-from app.api import news, categories, crawler, user, history
-from app.api import source
-from app.api import subscription
-from app.services.scheduler import start_crawler_scheduler, stop_crawler_scheduler
-from app.db.database import create_tables
+from api import news, categories, crawler, user, history
+from api import source
+from api import subscription
+from services.scheduler import start_crawler_scheduler, stop_crawler_scheduler
+from db.database import create_tables
 
 # 配置日志
 logging.basicConfig(
