@@ -1,29 +1,30 @@
 # 后端 Dockerfile
 FROM python:3.13-slim
 
-# ================== 最终解决方案 ==================
-# 在安装任何东西之前，先把所有编译工具装好
-# 这能解决所有 "build wheel" 相关的错误
+# 安装编译工具
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
-# =================================================
 
 WORKDIR /app
 
-# 1. 先只复制依赖文件
+# 复制依赖文件并安装
 COPY backend/requirements.txt .
-
-# 2. 安装依赖 (现在它拥有所有编译工具，不会再失败)
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 3. 最后再复制所有后端代码
+# 复制所有后端代码
 COPY backend/ .
 
 # 暴露端口
 EXPOSE 8000
 
-# 启动命令
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# ================== 最终诊断步骤 #2 ==================
+# 在启动前，打印出当前目录的所有文件，让我们看看 main.py 到底在哪里
+# 这将揭示最终的路径问题
+CMD echo "--- Listing files in /app ---" && \
+    ls -R && \
+    echo "--- Starting App ---" && \
+    uvicorn main:app --host 0.0.0.0 --port 8000
+# =================================================
