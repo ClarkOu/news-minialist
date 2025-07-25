@@ -1,9 +1,8 @@
 services:
-  # Redis 服务 (作为私有服务，仅供内部访问)
-  - type: pserv
+  # Redis 服务 (使用Render的原生Redis服务，更简单可靠)
+  - type: redis
     name: redis
-    image:
-      url: redis:7-alpine
+    plan: free # 使用免费套餐
 
   # 后端服务 (作为Web服务)
   - type: web
@@ -14,9 +13,9 @@ services:
     envVars:
       - key: REDIS_URL
         fromService:
-          type: pserv
+          type: redis # 引用上面的原生Redis服务
           name: redis
-          property: internalUrl
+          property: connectionString # 使用正确的属性
       - key: OPENROUTER_API_KEY
         sync: false # 部署时Render会提示你手动输入这个值
 
@@ -37,4 +36,4 @@ services:
         fromService:
           type: web
           name: backend
-          property: url
+          property: url # 这个属性对于web服务是正确的
