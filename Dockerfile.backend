@@ -1,31 +1,25 @@
-# ================== 最终解决方案 ==================
 # 使用一个稳定且被广泛支持的Python版本
-FROM python:3.11-slim
+FROM python:3
 
-# 安装所有编译工具，一劳永逸
+# 安装所有编译工具
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
-# 设置工作目录为 /app
+# 设置工作目录
 WORKDIR /app
 
-# 关键步骤：告诉Python，/app是所有模块的根目录
-# 这样，它就能正确找到 from app.api ...
-ENV PYTHONPATH=/app
-
-# 将整个 backend 文件夹的内容复制到 /app
-# 这会形成 /app/app, /app/requirements.txt 等结构
-COPY backend/ .
+# 关键步骤：将整个项目（包含backend文件夹）复制到容器的/app目录
+COPY . .
 
 # 安装依赖
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r backend/requirements.txt
 
 # 暴露端口
 EXPOSE 8000
 
-# 关键步骤：修正启动命令
-# 因为我们的代码在 /app/app/main.py，所以要用 app.main 来启动
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# 关键步骤：修正启动命令，让 uvicorn 在正确的子目录里启动
+# 它会去寻找 /app/backend/app/main.py 文件
+CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--app-dir", "backend"]

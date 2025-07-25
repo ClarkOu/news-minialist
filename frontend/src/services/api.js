@@ -110,7 +110,7 @@ export const fetchUserSubscriptions = async (userId) => {
 };
 // src/services/api.js
 // 使用环境变量定义基础URL，注意这里不再包含 /api，因为环境变量里已经有了
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api'; 
+const API_BASE_URL = 'https://b41dbc8850be.ngrok-free.app'; 
 
 // 添加调试日志
 function logApiCall(method, url, params = null) {

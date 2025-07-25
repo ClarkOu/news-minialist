@@ -4,7 +4,7 @@ import re
 from typing import List, Optional, Dict, Any
 from openai import AsyncOpenAI, APIError, APITimeoutError
 
-from config import OPENROUTER_API_KEY, OPENROUTER_MODEL_NAME
+from ..config import OPENROUTER_API_KEY, OPENROUTER_MODEL_NAME
 
 # 配置日志
 logger = logging.getLogger(__name__)

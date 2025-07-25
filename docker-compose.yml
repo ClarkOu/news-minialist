@@ -1,29 +1,11 @@
-version: '3.8'
-
 services:
-  # 后端服务
   backend:
     build:
       context: .
       dockerfile: Dockerfile.backend
-    restart: unless-stopped
-    environment:
-      # 你需要在Render后台设置这个环境变量
-      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+    ports:
+      - "8000:8000"
     volumes:
-      # 这一行会被Render的持久化磁盘替代，但本地保留
-      - ./data:/app/data
-
-  # 前端服务
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    restart: unless-stopped
-    depends_on:
-      - backend
-
-  # Redis服务
-  redis:
-    image: redis:7-alpine
-    restart: unless-stopped
+      - ./backend:/app/backend
+    environment:
+      - PYTHONPATH=/app
