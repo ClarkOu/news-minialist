@@ -7,13 +7,13 @@ from typing import Dict, List, Optional
 
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
 
-from ..db.database import SessionLocal
-from ..models.news import News
-from ..models.category import Category
-from .ai_processor import OpenRouterService 
-from ..config import NEWS_SOURCES, CRAWLER_HEADLESS
+from db.database import SessionLocal
+from models.news import News
+from models.category import Category
+from services.ai_processor import OpenRouterService 
+from config import NEWS_SOURCES, CRAWLER_HEADLESS
 from urllib.parse import urljoin, urlparse
-from ..models.source import Source
+from models.source import Source
 
 # 配置日志
 logger = logging.getLogger(__name__)

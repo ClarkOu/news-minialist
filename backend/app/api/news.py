@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 from datetime import datetime, timedelta
 
-from ..db.database import get_db
-from ..models.news import News
-from ..models.category import Category
+from db.database import get_db
+from models.news import News
+from models.category import Category
 from pydantic import BaseModel
 
 router = APIRouter()

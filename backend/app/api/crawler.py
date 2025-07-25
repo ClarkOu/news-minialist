@@ -4,9 +4,9 @@ from pydantic import BaseModel, HttpUrl
 import asyncio
 import logging
 
-from ..db.database import get_db
-from ..services.crawler import NewsCrawlerService
-from ..services.scheduler import get_scheduler
+from db.database import get_db
+from services.crawler import NewsCrawlerService
+from services.scheduler import get_scheduler
 
 # 配置日志
 logger = logging.getLogger(__name__)
