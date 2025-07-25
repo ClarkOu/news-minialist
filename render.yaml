@@ -1,0 +1,40 @@
+services:
+  # Redis 服务 (作为私有服务，仅供内部访问)
+  - type: pserv
+    name: redis
+    image:
+      url: redis:7-alpine
+
+  # 后端服务 (作为Web服务)
+  - type: web
+    name: backend
+    env: docker
+    dockerfilePath: ./Dockerfile.backend
+    # 环境变量
+    envVars:
+      - key: REDIS_URL
+        fromService:
+          type: pserv
+          name: redis
+          property: internalUrl
+      - key: OPENROUTER_API_KEY
+        sync: false # 部署时Render会提示你手动输入这个值
+
+    # 持久化磁盘 (用于存储数据库)
+    disk:
+      name: data
+      mountPath: /app/data
+      sizeGB: 1
+
+  # 前端服务 (作为Web服务，这是公开访问的入口)
+  - type: web
+    name: frontend
+    env: docker
+    dockerfilePath: ./Dockerfile.frontend
+    # 环境变量，告诉前端后端的地址
+    envVars:
+      - key: REACT_APP_API_URL # 注意: 这个变量名取决于你的前端代码
+        fromService:
+          type: web
+          name: backend
+          property: url
