@@ -1,0 +1,224 @@
+/* 用户中心美化样式 */
+:root {
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --success: #22c55e;
+  --gray-bg: #f5f7fa;
+  --card-radius: 18px;
+  --card-shadow: 0 4px 24px #0001;
+}
+
+.user-center-bg {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #e0e7ff 0%, #f5f7fa 100%);
+  padding: 0;
+}
+
+/* 增大主内容区宽度 */
+.uc-main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 32px 0 48px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  align-items: stretch;
+  min-height: 600px;
+}
+
+/* 左侧栏稍窄，右侧栏更宽 */
+.uc-left {
+  flex: 1 1 370px;
+  min-width: 320px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.uc-right {
+  flex: 1 1 0;
+  min-width: 500px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: stretch;
+}
+.uc-right {
+  justify-content: flex-start;
+}
+
+/* 讓右側卡片上下排列且自適應高度 */
+.uc-right {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: stretch;
+}
+.uc-right .uc-card {
+  flex: 1 1 0;
+  min-width: 380px;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.uc-history-list {
+  overflow-y: auto;
+  margin-top: 8px;
+}
+
+.uc-card {
+  background: #fff;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 32px 28px 24px 28px;
+  border: none;
+}
+
+.uc-user {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.uc-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #2563eb22;
+}
+
+.uc-user-info {
+  flex: 1;
+}
+
+.uc-user-info .name {
+  font-size: 22px;
+  font-weight: 600;
+  color: #222;
+}
+.uc-user-info .email {
+  color: #666;
+  font-size: 15px;
+  margin-top: 2px;
+}
+.uc-user-info .date {
+  color: #aaa;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.uc-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.uc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.uc-tag {
+  font-size: 15px;
+  padding: 6px 18px;
+  border-radius: 18px;
+  background: #f1f5f9;
+  color: #222;
+  cursor: pointer;
+  transition: all 0.18s;
+  border: 1px solid #e0e7ef;
+  user-select: none;
+}
+.uc-tag.subscribed {
+  background: var(--primary);
+  color: #fff;
+  border: 1px solid var(--primary-light);
+}
+.uc-tag.subscribed-success {
+  background: var(--success);
+  color: #fff;
+  border: 1px solid #22c55e44;
+}
+.uc-tag:hover {
+  box-shadow: 0 2px 8px #2563eb22;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.uc-add-source-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.uc-add-source-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.uc-history-list {
+  max-height: 80vh;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+
+.uc-history-item {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 12px 0 8px 0;
+}
+.uc-history-item:last-child {
+  border-bottom: none;
+}
+
+.uc-history-title {
+  font-weight: 600;
+  color: #222;
+  font-size: 16px;
+}
+.uc-history-date {
+  color: #aaa;
+  font-size: 13px;
+  margin-left: 8px;
+}
+.uc-history-summary {
+  color: #555;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.uc-feedback {
+  margin-top: 18px;
+  color: #888;
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .uc-main {
+    flex-direction: column;
+    gap: 0;
+    padding: 24px 0 32px 0;
+  }
+  .uc-left, .uc-right {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .uc-right {
+    flex-direction: column;
+  }
+  .uc-right .uc-card {
+    max-width: 100%;
+  }
+}

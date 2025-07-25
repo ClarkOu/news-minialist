@@ -1,0 +1,70 @@
+/* src/components/Layout.css */
+:root {
+    --text-primary: #1a1a1a;
+    --text-secondary: #757575;
+    --background: #ffffff;
+    --background-alt: #f7f7f7;
+    --border-color: #e1e1e1;
+    --accent: #0070f3;
+  }
+  
+  .dark {
+    --text-primary: #f0f0f0;
+    --text-secondary: #a0a0a0;
+    --background: #121212;
+    --background-alt: #1e1e1e;
+    --border-color: #333333;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--background);
+  }
+  
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .header {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .site-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .main {
+    min-height: 70vh;
+    padding: 2rem 0;
+  }
+  
+  .footer {
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+  }

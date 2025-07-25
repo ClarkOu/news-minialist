@@ -1,0 +1,25 @@
+# IDE and OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Dependencies
+node_modules/
+/backend/venv
+/backend/__pycache__
+
+# Build output
+/frontend/build
+
+# Environment variables
+.env
+.env.*
+env_example.txt
+
+# Database file
+news.db
+/data/
+data/
+
+# Docker ignore file (already exists, but good practice)
+.dockerignore

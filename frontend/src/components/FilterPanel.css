@@ -1,0 +1,164 @@
+/* src/components/FilterPanel.css */
+.filter-panel-horizontal {
+  margin-bottom: 2rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+}
+
+.score-group {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.time-group {
+  flex: 2;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filter-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-color);
+  white-space: nowrap;
+  min-width: 70px;
+}
+
+/* 分数滑块样式 */
+.score-slider {
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e0e0e0;
+  border-radius: 2px;
+  outline: none;
+}
+
+
+.score-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.score-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* 时间筛选样式 */
+.time-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.time-button {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 99px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-button:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.time-button.active {
+  color: white;
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* 重置按钮 */
+.reset-button {
+  padding: 0.35rem 1rem;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  color: var(--light-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reset-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .filter-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .filter-group {
+    width: 100%;
+  }
+  
+  .score-group,
+  .time-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .filter-label {
+    margin-bottom: 0.5rem;
+  }
+  
+  .score-slider {
+    width: 100%;
+  }
+
+  .time-buttons {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .time-button {
+    flex: 1;
+    text-align: center;
+    min-width: calc(50% - 0.25rem);
+  }
+  
+  .reset-button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
+

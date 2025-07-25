@@ -1,0 +1,83 @@
+/* src/components/NewsCard.css */
+.news-card {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+  }
+  
+  .news-card:hover {
+    background-color: var(--background-alt);
+  }
+  
+  .news-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .news-header {
+    display: flex;
+    align-items: baseline; /* 对齐评分和标题 */
+    margin-bottom: 0.5rem; /* 调整标题和摘要间距 */
+  }
+  
+  .news-score-badge {
+    background-color: var(--accent);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 0.75rem; /* 评分和标题间距 */
+    flex-shrink: 0; /* 防止评分被压缩 */
+  }
+  
+  .news-title {
+    font-size: 1.15rem; /* 稍微调整标题大小 */
+    font-weight: 600; /* 加粗标题 */
+    margin-bottom: 0; /* 移除标题自带的下边距 */
+    line-height: 1.4;
+    color: var(--text-primary);
+  }
+  
+  /* 新增摘要样式 */
+  .news-summary-card {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+    /* 默认截断 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 默认显示 2 行 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* 添加鼠标指针样式，提示可点击 */
+    cursor: pointer;
+    transition: max-height 0.3s ease-out; /* 添加过渡效果 */
+  }
+  
+  /* 当摘要展开时的样式 */
+  .news-summary-card.expanded {
+    -webkit-line-clamp: unset; /* 移除行数限制 */
+    /* line-clamp: unset; */ /* 标准属性 */
+    overflow: visible; /* 显示溢出内容 */
+    text-overflow: clip; /* 不需要省略号 */
+    cursor: default; /* 展开后恢复默认鼠标样式 */
+    max-height: 1000px; /* 确保足够的高度来显示内容，配合 transition */
+  }
+  
+    
+  .news-meta {
+    display: flex;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+  
+  .news-source {
+    margin-right: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .news-date {
+    opacity: 0.8;
+  }
