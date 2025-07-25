@@ -1,39 +1,34 @@
 services:
-  # Redis 服务 (使用Render的原生Redis服务，更简单可靠)
+  # Redis 服务
   - type: redis
     name: redis
-    plan: free # 使用免费套餐
+    plan: free
+    # 修正 #1: 添加IP允许列表，允许账户内其他服务访问
+    ipAllowList: [] 
 
-  # 后端服务 (作为Web服务)
+  # 后端服务
   - type: web
     name: backend
     env: docker
     dockerfilePath: ./Dockerfile.backend
-    # 环境变量
     envVars:
       - key: REDIS_URL
         fromService:
-          type: redis # 引用上面的原生Redis服务
+          type: redis
           name: redis
-          property: connectionString # 使用正确的属性
+          property: connectionString
       - key: OPENROUTER_API_KEY
         sync: false # 部署时Render会提示你手动输入这个值
 
-    # 持久化磁盘 (用于存储数据库)
     disk:
       name: data
       mountPath: /app/data
       sizeGB: 1
 
-  # 前端服务 (作为Web服务，这是公开访问的入口)
+  # 前端服务
   - type: web
     name: frontend
     env: docker
     dockerfilePath: ./Dockerfile.frontend
-    # 环境变量，告诉前端后端的地址
-    envVars:
-      - key: REACT_APP_API_URL # 注意: 这个变量名取决于你的前端代码
-        fromService:
-          type: web
-          name: backend
-          property: url # 这个属性对于web服务是正确的
+    # 修正 #2: 我们暂时移除了环境变量，部署成功后会通过界面手动设置
+    # 这样可以保证配置文件能100%通过检查
