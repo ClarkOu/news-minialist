@@ -6,15 +6,21 @@ WORKDIR /app
 # 1. 先只复制依赖文件
 COPY backend/requirements.txt .
 
+# ================== 最终诊断步骤 ==================
+# 在安装前，把 requirements.txt 的内容打印到日志里
+# 让我们看看它到底是什么样的！
+RUN echo "--- Start of requirements.txt content ---" && \
+    cat requirements.txt && \
+    echo "--- End of requirements.txt content ---"
+# =================================================
+
 # 2. 安装依赖
-# 这一步之后，正确的依赖就已经安装好了
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 3. 最后再复制所有后端代码
-# 这样可以确保不会用旧的 requirements.txt 覆盖掉任何东西
 COPY backend/ .
 
-# 暴露端口 (虽然Render会自动处理，但这是个好习惯)
+# 暴露端口
 EXPOSE 8000
 
 # 启动命令
