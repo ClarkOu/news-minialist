@@ -1,7 +1,7 @@
 # 后端 Dockerfile
 FROM python:3.13-slim
 
-# 安装编译工具
+# 安装所有编译工具，一劳永逸
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
@@ -10,21 +10,22 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# 复制依赖文件并安装
+# ================== 最终修正 ==================
+# 先只复制依赖文件，注意路径
 COPY backend/requirements.txt .
+# =============================================
+
+# 安装依赖
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 复制所有后端代码
-COPY backend/ .
+# ================== 最终修正 ==================
+# 直接复制 app 文件夹里的所有内容到当前目录
+# 这样 main.py 就会在 /app/main.py
+COPY backend/app/ .
+# =============================================
 
 # 暴露端口
 EXPOSE 8000
 
-# ================== 最终诊断步骤 #2 ==================
-# 在启动前，打印出当前目录的所有文件，让我们看看 main.py 到底在哪里
-# 这将揭示最终的路径问题
-CMD echo "--- Listing files in /app ---" && \
-    ls -R && \
-    echo "--- Starting App ---" && \
-    uvicorn main:app --host 0.0.0.0 --port 8000
-# =================================================
+# 启动命令 (现在这个命令是正确的了)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
