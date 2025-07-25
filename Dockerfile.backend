@@ -1,6 +1,6 @@
-# 将 Python 版本从不稳定的 3.13 降级到稳定的 3.11
+# ================== 最终解决方案 ==================
+# 使用一个稳定且被广泛支持的Python版本
 FROM python:3.11-slim
-# =================================================
 
 # 安装所有编译工具，一劳永逸
 RUN apt-get update && apt-get install -y \
@@ -9,19 +9,23 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
+# 设置工作目录为 /app
 WORKDIR /app
 
-# 先只复制依赖文件
-COPY backend/requirements.txt .
+# 关键步骤：告诉Python，/app是所有模块的根目录
+# 这样，它就能正确找到 from app.api ...
+ENV PYTHONPATH=/app
+
+# 将整个 backend 文件夹的内容复制到 /app
+# 这会形成 /app/app, /app/requirements.txt 等结构
+COPY backend/ .
 
 # 安装依赖
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 直接复制 app 文件夹里的所有内容到当前目录
-COPY backend/app/ .
-
 # 暴露端口
 EXPOSE 8000
 
-# 启动命令
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# 关键步骤：修正启动命令
+# 因为我们的代码在 /app/app/main.py，所以要用 app.main 来启动
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

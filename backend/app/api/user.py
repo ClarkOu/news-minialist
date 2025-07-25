@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, EmailStr
-from ..db.database import get_db
-from ..models.user import User
+from db.database import get_db
+from models.user import User
 from sqlalchemy.exc import IntegrityError
 import hashlib
 import jwt

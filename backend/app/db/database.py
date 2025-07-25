@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import logging
 
-from app.config import DATABASE_URL
+from config import DATABASE_URL
 
 # 配置日志
 logger = logging.getLogger(__name__)
